@@ -12,6 +12,19 @@ API_HASH = '' #from https://my.telegram.org
 
 client = TelegramClient('session', API_ID, API_HASH)
 
+def stylize(text):
+    normal = "0123456789:"
+    bold   = "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗："
+    outlined = "⓪①②③④⑤⑥⑦⑧⑨："
+    double_struck = "𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡："
+    fullwidth = "０１２３４５６７８９："
+    sans_serif_bold = "𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵："
+# ============================================================
+# select font 
+# ============================================================
+    SELECTED = sans_serif_bold
+    return text.translate(str.maketrans(normal, SELECTED))
+# ============================================================
 async def update_last_name():
     print("Connecting...")
     await client.start()
@@ -21,7 +34,7 @@ async def update_last_name():
         now = datetime.now()
 
         #format of clock
-        last_name = f"{now.strftime('%H:%M')}"
+        last_name = stylize(f"{now.strftime('%H:%M')}")
 
         try:
             await client(UpdateProfileRequest(last_name=last_name))
