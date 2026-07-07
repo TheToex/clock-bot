@@ -1,12 +1,13 @@
 import asyncio
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from telethon import TelegramClient
 from telethon.tl.functions.account import UpdateProfileRequest
 
 # ===========================================================
 # enter your informations here (from https://my.telegram.org)
 # ===========================================================
-API_ID   =      #from https://my.telegram.org
+API_ID   =     #from https://my.telegram.org
 API_HASH = '' #from https://my.telegram.org
 # ===========================================================
 
@@ -14,16 +15,16 @@ client = TelegramClient('session', API_ID, API_HASH)
 
 def stylize(text):
     normal = "0123456789:"
-    bold   = "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗："
-    outlined = "⓪①②③④⑤⑥⑦⑧⑨："
-    double_struck = "𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡："
-    fullwidth = "０１２３４５６７８９："
-    sans_serif_bold = "𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵："
+    bold   = "𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗:"
+    outlined = "⓪①②③④⑤⑥⑦⑧⑨:"
+    double_struck = "𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡:"
+    fullwidth = "０１２３４５６７８９:"
+    sans_serif_bold = "𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵:"
 # ============================================================
 # select font 
 # ============================================================
-    SELECTED = sans_serif_bold
-    return text.translate(str.maketrans(normal, SELECTED))
+    SELECTED = normal
+    return text.translate(str.maketrans(normal,SELECTED))
 # ============================================================
 async def update_last_name():
     print("Connecting...")
@@ -31,8 +32,11 @@ async def update_last_name():
     print("Connected! bot started.\n")
 
     while True:
+        # TimeZone
         now = datetime.now()
-
+        # Custom TimeZone
+        TIMEZONE = "Asia/Tehran"
+        #now = datetime.now(ZoneInfo(TIMEZONE))
         #format of clock
         last_name = stylize(f"{now.strftime('%H:%M')}")
 
@@ -43,7 +47,7 @@ async def update_last_name():
             print(f"❌ Error!!! {e}")
 
        
-        seconds_to_wait = 60 - datetime.now().second
+        seconds_to_wait = 60 - now.second
         await asyncio.sleep(seconds_to_wait)
 
 with client:
