@@ -23,6 +23,6 @@ WantedBy=multi-user.target
 """ > /etc/systemd/system/clock-bot.service
 systemctl daemon-reload
 systemctl enable clock-bot
-systemctl start clock-bot
-echo -e "\e[32mInstallation Completed!!!\e[0m"
+systemctl restart clock-bot
+echo -e "\e[32mInstallation Completed\e[0m"
 sleep 2
