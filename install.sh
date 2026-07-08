@@ -22,5 +22,7 @@ WantedBy=multi-user.target
 systemctl daemon-reload
 systemctl enable clock-bot
 systemctl start clock-bot
-python3 clock-bot.py
 echo -e "\e[32mInstallation Completed!!!\e[0m"
+sleep 2
+clear
+venv/bin/python3 clock-bot.py
