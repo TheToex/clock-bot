@@ -24,5 +24,6 @@ WantedBy=multi-user.target
 systemctl daemon-reload
 systemctl enable clock-bot
 systemctl restart clock-bot
-echo -e "\e[32mInstallation Completed\e[0m"
+echo -e "\e[32m===Installation Completed===\e[0m"
+echo -e "\e[32mCheck your Telegram profile\e[0m"
 sleep 2
