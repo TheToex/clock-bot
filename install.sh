@@ -2,6 +2,7 @@ apt install python3 -y
 apt install python3-venv -y 
 python3 -m venv venv
 ./venv/bin/pip install -r requirements.txt
+python3 clock-bot.py
 touch /etc/systemd/system/clock-bot.service
 echo """
 [Unit]
@@ -21,4 +22,5 @@ WantedBy=multi-user.target
 systemctl daemon-reload
 systemctl enable clock-bot
 systemctl start clock-bot
+python3 clock-bot.py
 echo -e "\e[32mInstallation Completed!!!\e[0m"
